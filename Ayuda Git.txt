@@ -1,0 +1,110 @@
+Comandos de git
+
+Configuracion basica
+
+    Para ver la version con la cual se cuenta
+    git --version 
+
+    Para configurar el usuario
+    git config --global user.name "Hector Oróstica"
+
+    Para ver el usuario 
+    git config user.name
+
+    Para configurar el correo 
+    git config --global user.email "h.orostica.95@gmail.com"
+
+    Para ver el correo 
+    git config user.email
+
+    Configuracion para tener colores
+    git config color.ui true
+
+
+Comienzo de repositorio
+
+    Iniciar repositorio 
+    git init
+
+//  cuando se habla del stage (index) se refiere a que pasa al area de los archivos donde seran comiteados
+
+    Para saber donde estoy ubicado y el estado de mi repositorio
+    git status
+
+    Se agregan datos al Stage Index 
+    git add "nombre del archivo"
+
+    Ingresando un commit (El commit puede abarcar un total de 50 caracteres)
+    git commit -m "Ingresar comentario"
+
+    Para remover un archivo del Stage Index
+    git rm --cached nombreArchivo
+
+    se debe agregar el archivo .gitignore
+        este archivo se crea para decirle a git que debe ignorar los archivos nombrados en el.
+
+    Para ver el historia de commit
+    git log
+
+    Para ver todos los archivos agregados en el commit 
+    git log --stat
+
+    Muestra el historial de los commit de manera resumida (una sola linea)
+    git log --oneline
+
+    Permite ver de manera grafica las ramas
+    git log --graph
+
+    Permite ver todo
+    git log --oneline --graph --all
+
+    Para ver la diferencia entre el commit pasado y el contenido actual
+    git diff
+
+    Para ver la diferencia entre un commit en especifico y el contenido actual
+    git diff "codigo del commit" nombreArchivo
+
+    Para regresar a una version pasada
+    git checkout "Codigo o identificador del commit"
+
+    una rama o branches corresponde a una copia del repositorio original donde el usuario la ocupa para no dañar la rama principal
+
+    Permite visualizar cuantas ramas existen
+    git branch
+
+    Para cambiar de rama
+    git checkout nombreDeLaRama
+
+    Para crear una nueva rama
+    git checkout -b nombreDeLaRama
+
+    Para realizar el merge a la rama principal se debe posicionar primero en la principal y luego realizar el merge con la que se desea
+    git merge "Nombre de la rama que se desea unir a la principal"
+    
+    Para eliminar una rama
+    git branch -d nombreDeLaRama
+
+Generando una clave para github
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+
+Conectando el repositorio a github
+
+    Este comando se utiliza cuando no se a creado el repositorio todavia
+    Iniciar repositorio 
+    git init
+
+    Conectandose con el repositorio remoto
+    git remote add origin https://github.com/HectorOrostica95/Estudio.git
+
+    Para saber el repositorio al cual estoy conectado
+    git remote -v
+
+    Para subir los archivos a github
+    git push -u origin master
+
+    Para traer los archivos desde internet a la pc
+    git pull origin master
+
+    Para clonar un codigo de algun usuario de github
+    git clone "insertar direccion URL"
