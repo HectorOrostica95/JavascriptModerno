@@ -95,7 +95,7 @@ Conectando el repositorio a github
     git init
 
     Conectandose con el repositorio remoto
-    git remote add origin https://github.com/HectorOrostica95/Estudio.git
+    git remote add origin https://github.com/HectorOrostica95/JavascriptModerno.git
 
     Para saber el repositorio al cual estoy conectado
     git remote -v
