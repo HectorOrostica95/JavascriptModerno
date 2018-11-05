@@ -16,4 +16,4 @@ enlace.textContent = "Nuevo enlace";
 document.querySelector("#secundaria").appendChild(enlace);
 // console.log(enlace);
 
-//Esto continua en reemplazar elementos
+//Esto continua en reemplazarElementos

@@ -190,4 +190,4 @@ console.log(enlaces[4].previousElementSibling.previousElementSibling);
 console.log(enlaces[0].nextElementSibling.nextElementSibling);
 */
 
-//Esto continua en el archivo creando enlacesFooter
+//Esto continua en el archivo creandoEnlacesFooter
