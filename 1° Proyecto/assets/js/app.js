@@ -1,3 +1,8 @@
+/* 
+    Lo que se realiza en Javascript es trabajar con el localStorage y mediante
+    un boton se agrega datos a una lista, tambien se pueden eliminar las frases creadas.
+*/
+
 //Variables
 const listaTweets = document.getElementById("lista-tweets");
 
@@ -11,7 +16,7 @@ function eventListeners() {
     //Borrar Tweets
     listaTweets.addEventListener("click", borrarTweet);
 
-    //Contenido cargado
+    //Cargando contenido del localStorage
     document.addEventListener("DOMContentLoaded", localStorageListo);
 }
 
@@ -24,6 +29,7 @@ function agregarTweet(e) {
     const tweet = document.getElementById("tweet").value;
     //Crear boton de eliminar 
     const botonBorrar = document.createElement("a");
+    //Busca la clase con el nombre de "borrar-tweet"
     botonBorrar.classList = "borrar-tweet";
     botonBorrar.innerText = "X";
 
@@ -41,9 +47,13 @@ function agregarTweet(e) {
 
 //Elimina el Tweet del DOM
 function borrarTweet(e) {
+    //Previene el evento para validarlo antes
     e.preventDefault();
+    //Valida que el usuario haya presionado en la "X"
     if (e.target.className === "borrar-tweet") {
+        //Elimina de la lista
         e.target.parentElement.remove();
+        //Llama a la funcion para eliminar los datos del LocalStorage
         borrarTweetLocalStorage(e.target.parentElement.innerText);
     }
 }
@@ -51,8 +61,10 @@ function borrarTweet(e) {
 //Mostrar datos de localStorage en la lista
 function localStorageListo() {
     let tweets;
-
+    
+    //Llama a la funcion para obtener los datos de localStorage
     tweets = obtenerTweetsLocalStorage();
+
     tweets.forEach(function(tweet) {
         //Crear boton de eliminar 
         const botonBorrar = document.createElement("a");
@@ -77,9 +89,6 @@ function agregarTweetLocalStorage(tweet) {
     tweets.push(tweet);
     //Convertir de string a arreglo para local storage
     localStorage.setItem("tweets", JSON.stringify(tweets) );
-
-    //Agregar a local storage
-    // localStorage.setItem("tweets", tweet);
 }
 
 //Comprobar que haya elementos en localStorage, retorna un arreglo
@@ -88,27 +97,33 @@ function obtenerTweetsLocalStorage() {
 
     //revisamos los valores de local Storage
     if (localStorage.getItem("tweets") === null) {
+        //Si no existe nada se crea el arreglo
         tweets = [];
     } else {
+        //Si existen datos estos se traen para cargarlos en la pantalla
         tweets = JSON.parse( localStorage.getItem("tweets") );
     }
+    //Retorna los datos para que estos sean visualizados
     return tweets;
 }
 
 //Eliminar Tweet de local Storage
 function borrarTweetLocalStorage(tweet) {
     let tweets, tweetBorrar;
+
     //Elimina la X del Tweet
     tweetBorrar = tweet.substring(0, tweet.length - 1)
 
+    //Se obtienen los datos de los Tweet almacenados en el LocalStorage
     tweets = obtenerTweetsLocalStorage();
     
     tweets.forEach(function (tweet, index) { 
+        //Se busca el tweet que es igual al que se desea eliminar
         if(tweetBorrar === tweet) {
             tweets.splice(index, 1);
         }
     });
 
-    //Convertir de string a arreglo para local storage
+    //Se cargan los datos nuevamente en el LocalStorage
     localStorage.setItem("tweets", JSON.stringify(tweets) );
 }
